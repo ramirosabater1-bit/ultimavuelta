@@ -1,6 +1,6 @@
 import { useState, type FormEvent } from 'react'
 import { supabase } from '../lib/supabase'
-import { LOGO, NOMBRE } from '../lib/marca'
+import { CATEGORIAS, LOGO, NOMBRE } from '../lib/marca'
 
 export default function Ingreso() {
   const [email, setEmail] = useState('')
@@ -44,6 +44,7 @@ export default function Ingreso() {
         <button className="btn pri" disabled={enviando}>{enviando ? 'Entrando…' : 'Entrar'}</button>
         <button type="button" className="link" onClick={olvide}>Olvidé mi contraseña</button>
       </form>
+      <div className="categorias" aria-label="Categorías">{CATEGORIAS.map((c) => <span key={c}>{c}</span>)}</div>
     </div>
   )
 }

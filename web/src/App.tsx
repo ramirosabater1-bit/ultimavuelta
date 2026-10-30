@@ -41,7 +41,7 @@ function Solo({ roles, children }: { roles: Rol[]; children: ReactNode }) {
 
 function Privado() {
   const { cargando, perfil, sinPerfil, salir } = useAuth()
-  if (cargando) return <div className="ingreso"><p style={{ color: 'var(--hdr-fg)' }}>Cargando…</p></div>
+  if (cargando) return <div className="ingreso"><p style={{ color: 'var(--hdr-fg)' }}>Calentando motores…</p></div>
   if (sinPerfil) return <div className="ingreso"><div className="card stack"><h1>Sin acceso</h1>
     <p style={{ margin: 0 }}>Tu usuario no está activo. Pedile a uno de los dueños que te habilite.</p><button className="btn" onClick={salir}>Salir</button></div></div>
   if (!perfil) return <Ingreso />
