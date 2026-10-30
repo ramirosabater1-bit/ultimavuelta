@@ -3,6 +3,7 @@ import { useParams } from 'react-router-dom'
 import { supabase, mensajeError } from '../lib/supabase'
 import { hhmm, plata } from '../lib/formato'
 import { LOGO, NOMBRE } from '../lib/marca'
+import { Grilla } from '../components/Autos'
 
 interface Prod { id: number; nombre: string; descripcion: string | null; precio: number; agotado: boolean }
 interface CartaQR {
@@ -68,6 +69,7 @@ export default function Publico() {
           : <button className="pub-add" aria-label={`Agregar ${p.nombre}`} onClick={() => sumar(p.id, 1)}>+</button>)}
       </div> })}
     </section>)}
+    <footer className="pub-fin"><div className="label">En pista</div><Grilla /></footer>
     <div style={{ height: 110 }} />
     <div className="pub-pie">
       <button className="btn" onClick={llamar} disabled={c.llamado}>{c.llamado ? 'El mozo ya viene' : 'Llamar al mozo'}</button>

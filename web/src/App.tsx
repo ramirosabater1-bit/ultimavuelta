@@ -4,6 +4,7 @@ import { AuthProvider, useAuth } from './auth/AuthProvider'
 import Ingreso from './auth/Ingreso'
 import ElegirClave from './auth/ElegirClave'
 import Layout from './components/Layout'
+import { Auto } from './components/Autos'
 import { ToastProvider } from './components/ui'
 import type { Rol } from './lib/tipos'
 
@@ -41,7 +42,7 @@ function Solo({ roles, children }: { roles: Rol[]; children: ReactNode }) {
 
 function Privado() {
   const { cargando, perfil, sinPerfil, salir } = useAuth()
-  if (cargando) return <div className="ingreso"><p style={{ color: 'var(--hdr-fg)' }}>Calentando motores…</p></div>
+  if (cargando) return <div className="ingreso"><div className="calentando"><Auto cat="tc" numero={7} /><p>Calentando motores…</p></div></div>
   if (sinPerfil) return <div className="ingreso"><div className="card stack"><h1>Sin acceso</h1>
     <p style={{ margin: 0 }}>Tu usuario no está activo. Pedile a uno de los dueños que te habilite.</p><button className="btn" onClick={salir}>Salir</button></div></div>
   if (!perfil) return <Ingreso />

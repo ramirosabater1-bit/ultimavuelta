@@ -4,6 +4,7 @@ import { supabase } from '../lib/supabase'
 import { duracion, fecha, hhmm, jornada, minutosDesde, plata } from '../lib/formato'
 import type { Cuenta, Gasto, Jornada, MedioPago, Mesa, Pedido, Ticket } from '../lib/tipos'
 import { Cobrar } from '../components/salon'
+import { AutoVacio } from '../components/Autos'
 import { Cabeza, Modal, Pill, Stat, useAccion } from '../components/ui'
 
 type Ventana = null | 'abrir' | 'gasto' | 'cerrar' | { cobrar: Mesa }
@@ -66,7 +67,7 @@ export default function Caja() {
           <span className="grow">{m.estado === 'cuenta' ? <Pill tono="acc">Pidió la cuenta</Pill> : <span className="muted">Abierta {duracion(minutosDesde(m.abierta!))}</span>}</span>
           <span className="num">{plata(totalMesa(m))}</span>
           <button className="btn sm pri" disabled={!itemsDe(m).length} onClick={() => setVentana({ cobrar: m })}>Cobrar</button>
-        </div>) : <div className="kempty">No hay mesas abiertas</div>}
+        </div>) : <AutoVacio texto="No hay mesas abiertas" cat="r12" />}
       </div></section>
       <section className="panel"><h3 style={{ marginBottom: 6 }}>Por medio de pago</h3><div className="rows">
         {porMedio.map((m) => <div key={m.nombre} className="row"><span className="grow">{m.nombre}</span><span className="num mono">{plata(m.v)}</span></div>)}

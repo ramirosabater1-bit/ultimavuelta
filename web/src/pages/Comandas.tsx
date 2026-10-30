@@ -4,6 +4,7 @@ import { supabase } from '../lib/supabase'
 import { hhmm, minutosDesde } from '../lib/formato'
 import type { EstadoComanda, Estacion, Mesa, Pedido } from '../lib/tipos'
 import { Items } from '../components/salon'
+import { AutoVacio } from '../components/Autos'
 import { Cabeza, Pill, useAccion } from '../components/ui'
 
 const COLUMNAS: { estado: EstadoComanda; titulo: string; boton: string; sigue: EstadoComanda }[] = [
@@ -43,7 +44,7 @@ export default function Comandas({ estacion }: { estacion: Estacion }) {
       const lista = datos.pedidos.filter((p) => p[campo] === c.estado)
       return <section key={c.estado} className="kcol">
         <h3>{c.titulo} <Pill>{lista.length}</Pill></h3>
-        {!lista.length ? <div className="kempty">Nada por acá</div> : lista.map((p) => {
+        {!lista.length ? <AutoVacio texto="Boxes libres: nada por acá" cat={estacion === 'barra' ? 'gol' : 'tc'} /> : lista.map((p) => {
           const mm = minutosDesde(p.creado)
           const nivel = c.estado === 'listo' ? '' : mm >= rojo ? 'crit' : mm >= amarillo ? 'warn' : ''
           return <article key={p.id} className={`ticket${nivel ? ` t-${nivel}` : ''}`}>
